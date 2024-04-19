@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends "mi_primera_app/base.html" %}
+
+{% load static %}
+{% block body_block %}
+    <h1>Mi viejo me sonrió me dijo que yo ya chambeé</h1>
+    <p>Le pedí otra chamba le dije que la de chambear me la sé</p>
+    {{ username }}
+    <br/>
+    <a href="mi_primera_app/formpage">Dejar un comentario</a>
+    <a href="mi_primera_app/otra">Entrar a la otra página</a>
+    <br/>
+
+    <h2>Mis intereses son:</h2>
+    <br/>
+    <table class="table table-dark">
+        <thead>
+            <th>Interés</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ interes_1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ interes_2 }}</td>
+            </tr>
+            <tr>
+                <td>{{ interes_3 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+<!--Tarea Acceso a Bases de Datos -->
+    <div class="container">
+        <h2>Nombre de equipos</h2>
+        {% if nombreequipo %}
+            <table class="table">
+                <thead>
+                    <th>Primer nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                </thead>
+                <tbody>
+                    {% for integrante in nombreequipo %}
+                        <tr>
+                            <td>{{integrante.first_name}}</td>
+                            <td>{{integrante.last_name}}</td>
+                            <td>{{integrante.email}}</td>
+                            <td>{{integrante.phone_number}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay nadie nunca en la vida</p>
+        {% endif %}
+    </div>
+
+    <br/>
+    <div class="section">
+        <h2>Registro de accesos:</h2>
+        {% if access_records %}
+            <ol>
+                {% for pepito in access_records %}
+                <li>{{pepito.webname}} - {{pepito.date}}</li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>Limpiaron el historial >:(</p>
+        {% endif %}
+    </div>
+    <br/>
+    <img src="https://www.prensalibre.com/wp-content/uploads/2022/06/chayanne-02.jpg" alt="El papá de todos los mexicanos" width="300px"/>
+    <img src="{% static 'images/josejose.jpg' %}" alt="Qué triste fue decirnos adios" width="300px"/>
+    <img src="{% static 'images/jackson.jpg' %}" alt="Qué triste fue decirnos adios" width="300px"/>
+    <img src="{% static 'images/tom.jpg' %}" alt="Qué triste fue decirnos adios" width="300px"/>
+{% endblock %}
